@@ -12,66 +12,6 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-	<header>
-		<h1>PACMAN</h1>
-	</header>
-
-
-	<div id='cssmenu'>
-		<ul>
-			<li><a id="welcomeBotton" href="#" onclick="welcome()" class="btn"><i aria-hidden="true"></i>Welcome</a></li>
-
-			<li><a id="registerBotton" href="#" onclick="register()" class="btn"><i aria-hidden="true"></i>Register</a></li>
-
-			<li><a id="loginBotton" href="#" onclick="login()" class="btn"><i aria-hidden="true"></i>Login</a></li>
-
-			<li><a id="aboutBotton" href="#" onclick="about()" class="btn"><i aria-hidden="true"></i>Register</a></li>
-		</ul>
-
-
-	</div>
-	<div id="login" style="display: none;" class="col-md-6 login-form-2">
-		<h3>Login</h3>
-		<form>
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Your Email *" value="" />
-			</div>
-			<div class="form-group">
-				<input type="password" class="form-control" placeholder="Your Password *" value="" />
-			</div>
-			<div class="form-group">
-				<input type="submit" class="btnSubmit" value="Login" />
-			</div>
-			<div class="form-group">
-
-				<a href="#" class="ForgetPwd" value="Login">Forget Password?</a>
-			</div>
-		</form>
-	</div>
-
-	<div id="welcome">
-		<div id="score">
-			<label for="lblScore">SCORE:</label>
-			<input id="lblScore" type="text" />
-		</div>
-		<div id="time">
-			<label for="lblTime">TIME:</label>
-			<input id="lblTime" type="text" />
-		</div>
-		<div id="game">
-			<canvas id="canvas" height="600" width="600"></canvas>
-		</div>
-	</div>
-
-
-	<footer>
-
-	</footer>
-
-
-
-</body>
 <script>
 	function welcome() {
 		var a = document.getElementById("welcome");
@@ -119,5 +59,71 @@
 
 	}
 </script>
+
+<body>
+	<header>
+		<img src="imgs/pacman_logo.jpeg" alt="Italian Trulli">
+	</header>
+
+
+	<div id='cssmenu'>
+		<ul>
+			<li><a id="welcomeBotton" href="#" onclick="welcome()" class="btn"><i aria-hidden="true"></i>Welcome</a></li>
+
+			<li><a id="registerBotton" href="#" onclick="register()" class="btn"><i aria-hidden="true"></i>Register</a></li>
+
+			<li><a id="loginBotton" href="#" onclick="login()" class="btn"><i aria-hidden="true"></i>Login</a></li>
+
+			<li><a id="aboutBotton" href="#" onclick="about()" class="btn"><i aria-hidden="true"></i>Register</a></li>
+		</ul>
+
+
+	</div>
+	<div id="login" style="display: none;" class="col-md-6 login-form-2">
+		<h3>Login</h3>
+		<form>
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Your Email *" value="" />
+			</div>
+			<div class="form-group">
+				<input type="password" class="form-control" placeholder="Your Password *" value="" />
+			</div>
+			<div class="form-group">
+				<input type="submit" class="btnSubmit" value="Login" />
+			</div>
+			<div class="form-group">
+
+				<a href="#" class="ForgetPwd" value="Login">Forget Password?</a>
+			</div>
+		</form>
+	</div>
+
+	<div id="Game" style="display: none;">
+		<div id="score">
+			<label for="lblScore">SCORE:</label>
+			<input id="lblScore" type="text" />
+		</div>
+		<div id="time">
+			<label for="lblTime">TIME:</label>
+			<input id="lblTime" type="text" />
+		</div>
+		<div id="game">
+			<canvas id="canvas" height="600" width="600"></canvas>
+		</div>
+	</div>
+
+	<div id="welcome">
+		<img src="imgs/pacman_logo.jpeg" alt="Italian Trulli">
+	</div>
+
+
+	<footer>
+
+	</footer>
+
+
+
+</body>
+
 
 </html>
