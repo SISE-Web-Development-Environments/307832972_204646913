@@ -130,7 +130,26 @@ h1
   }
 
   /************ login ***************/
-
+#login{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+#login{
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+#login{
+    text-align: center;
+    color: #333;
+}
+.btnSubmit
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
 
 }
 
