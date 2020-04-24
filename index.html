@@ -19,9 +19,9 @@
 		var b = document.getElementById("register");
 		b.style.display = 'none';
 		var c = document.getElementById("login");
-		b.style.display = 'none';
+		c.style.display = 'none';
 		var d = document.getElementById("about");
-		b.style.display = 'none';
+		d.style.display = 'none';
 
 	}
 	function register() {
@@ -30,9 +30,9 @@
 		var b = document.getElementById("register");
 		b.style.display = 'block';
 		var c = document.getElementById("login");
-		b.style.display = 'none';
+		c.style.display = 'none';
 		var d = document.getElementById("about");
-		b.style.display = 'none';
+		d.style.display = 'none';
 
 	}
 
@@ -42,9 +42,9 @@
 		var b = document.getElementById("register");
 		b.style.display = 'none';
 		var c = document.getElementById("login");
-		b.style.display = 'block';
+		c.style.display = 'block';
 		var d = document.getElementById("about");
-		b.style.display = 'none';
+		d.style.display = 'none';
 
 	}
 	function about() {
@@ -53,9 +53,9 @@
 		var b = document.getElementById("register");
 		b.style.display = 'none';
 		var c = document.getElementById("login");
-		b.style.display = 'none';
+		c.style.display = 'none';
 		var d = document.getElementById("about");
-		b.style.display = 'block';
+		d.style.display = 'block';
 
 	}
 </script>
@@ -89,13 +89,16 @@
 				<input type="password" class="form-control" placeholder="Your Password *" value="" />
 			</div>
 			<div class="form-group">
-				<input type="submit" class="btnSubmit" value="Login" />
+				<input type="submit" class="btnSubmit" value="login" />
 			</div>
 			<div class="form-group">
 
-				<a href="#" class="ForgetPwd" value="Login">Forget Password?</a>
+				<a href="#" class="ForgetPwd" value="login">Forget Password?</a>
 			</div>
 		</form>
+	</div>
+	<div id="register">
+		<h3>Register</h3>
 	</div>
 
 	<div id="Game" style="display: none;">
@@ -112,7 +115,7 @@
 		</div>
 	</div>
 
-	<div id="welcome">
+	<div id="welcome" style="display: block;">
 		<img src="imgs/pacman_logo.jpeg" alt="Italian Trulli">
 	</div>
 
