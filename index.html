@@ -1,40 +1,68 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<script src="./jquery-3.4.1.slim.min.js"></script>
-		<script type="text/javascript" src="./app.js"></script>
-		<link rel="stylesheet" href="style.css">
-	</head>
 
-	<body>
-		<header>
+<head>
+	<script src="./jquery-3.4.1.slim.min.js"></script>
+	<script type="text/javascript" src="./app.js"></script>
 
-		</header>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-		<div id='cssmenu'>
-			<ul>
-				 <li class='active'><a href='#'><span>Welcome</span></a></li>
-				 <li><a href='#'><span>Register</span></a></li>
-				 <li><a href='#'><span>Login</span></a></li>
-				 <li class='last'><a href='#'><span>About</span></a></li>
-			</ul>
-			</div>
-		
-		<div id="score">
-			<label for="lblScore">SCORE:</label>
-			<input id="lblScore" type="text" />
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<header>
+			<h1>PACMAN</h1>
+	</header>
+
+	<div id='cssmenu'>
+		<ul>
+			<li class='active'><a href='#'><span>Welcome</span></a></li>
+			<li><a href='#'><span>Register</span></a></li>
+			<li><a href='#'><span>Login</span></a></li>
+			<li class='last'><a href='#'><span>About</span></a></li>
+		</ul>
+	</div>
+	<div class="container login-container">
+		<div class="col-md-6 login-form-2">
+			<h3>Login</h3>
+			<form>
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Your Email *" value="" />
+				</div>
+				<div class="form-group">
+					<input type="password" class="form-control" placeholder="Your Password *" value="" />
+				</div>
+				<div class="form-group">
+					<input type="submit" class="btnSubmit" value="Login" />
+				</div>
+				<div class="form-group">
+
+					<a href="#" class="ForgetPwd" value="Login">Forget Password?</a>
+				</div>
+			</form>
 		</div>
-		<div id="time">
-			<label for="lblTime">TIME:</label>
-			<input id="lblTime" type="text" />
-		</div>
-		<div id="game">
-			<canvas id="canvas" height="600" width="600"></canvas>
-		</div>
-		<footer>
+	</div>
 
-		</footer>
+	<div id="score">
+		<label for="lblScore">SCORE:</label>
+		<input id="lblScore" type="text" />
+	</div>
+	<div id="time">
+		<label for="lblTime">TIME:</label>
+		<input id="lblTime" type="text" />
+	</div>
+	<div id="game">
+		<canvas id="canvas" height="600" width="600"></canvas>
+	</div>
+
+	<footer>
+
+	</footer>
 
 
-	</body>
+</body>
+
 </html>

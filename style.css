@@ -2,6 +2,12 @@
 --------------------------menu design-----------------------------
 */
 
+h1
+{
+	background: #939997;
+
+}
+
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:700);
 #cssmenu {
   background: #f96e5b;
@@ -121,4 +127,9 @@
   #cssmenu ul li a:before {
     display: none;
   }
+
+  /************ login ***************/
+
+
 }
+
