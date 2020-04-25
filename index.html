@@ -19,6 +19,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
+	
 </head>
 
 <script>
@@ -71,11 +72,9 @@
 		d.style.display = 'none';
 		var e = document.getElementById("Game");
 		e.style.display = 'block';
-
-
 	}
-
 </script>
+
 
 <body>
 	<header>
@@ -119,10 +118,19 @@
 		<h3>Register</h3>
 		<form>
 			<div class="form-group">
-				<input id="userName" type="text" class="form-control" placeholder="Your User Name *" value="" />
+				<input id="regUserName" type="text" class="form-control" placeholder="Your User Name *" value="" />
 			</div>
 			<div class="form-group">
-				<input id="password" type="password" class="form-control" placeholder="Your Password *" value="" />
+				<input id="regPassword" type="text" class="form-control" placeholder="Your Password *" value="" />
+			</div>
+			<div class="form-group">
+				<input id="fullName" type="text" class="form-control" placeholder="Your Full Name *" value="" />
+			</div>
+			<div class="form-group">
+				<input id="E-mail" type="text" class="form-control" placeholder="Your E-mail *" value="" />
+			</div>
+			<div class="form-group">
+				<input id="E-mail" type="date" class="form-control" placeholder="Your E-mail *" value=""/>
 			</div>
 			<div class="form-group">
 				<input type="submit" class="btnSubmit" value="register" onclick="store()" />

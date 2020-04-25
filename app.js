@@ -196,11 +196,11 @@ function checkReg(){
 */
 
 function store() {
-	var userName = document.getElementById('userName');
-	var userPw = document.getElementById('password');
+	var userName = document.getElementById('regUserName');
+	var userPw = document.getElementById('regPassword');
 	localStorage.setItem(userName.value,userPw.value);
-	alert(userName);
 	alert('registration sseccesful!');
+	settings();
 }
 
 // check if stored data from register-form is equal to entered data in the   login-form
