@@ -12,6 +12,62 @@ $(document).ready(function () {
 	init();
 	Start();
 
+	jQuery.validator.addMethod("lettersonly", function(value, element) {
+		return this.optional(element) || /^[a-z]+$/i.test(value);
+	}, "Letters only please");
+
+	jQuery.validator.addMethod("lettersAndNumbers", function(value, element) {
+		return this.optional(element) || /[a-z].[0-9]|[0-9].[a-z]/i.test(value);
+	}, "password must contain both numbers and letters please");
+
+	$('#registerForm').validate({
+		rules: {
+			fullName: {
+				required: true,
+				lettersonly: true
+			},
+			regPassword: {
+				required: true,
+				minlength: 6,
+				lettersAndNumbers: true
+			},
+			regUserName:{
+				required: true,
+			},
+			Email: {
+				required:true,
+				email: true
+			},
+			date: {
+				required: true,
+			},
+
+		},
+		messages: {
+			fullName: {
+				required: "Please enter your name",
+			},
+			regPassword: {
+				required: "please enter a valid password",
+				minlength: "Your password most consist at least 6 characters"
+			},
+			regUserName:{
+				required: "Please enter your user name",
+			},
+			Email: {
+				required : "please enter a valid email",
+			},
+			date: {
+				required: "Please enter your birthdate",
+			}
+		}
+	})
+	$('#btn').click(function () {
+		if ($("#registerForm").valid()) {
+			changeView(settings);
+		}
+	});
+
 });
 
 function Start() {
@@ -196,12 +252,15 @@ function checkReg(){
 */
 
 function store() {
-	var userName = document.getElementById('regUserName');
-	var userPw = document.getElementById('regPassword');
-	localStorage.setItem(userName.value,userPw.value);
-	alert('registration sseccesful!');
-	settings();
+	validate1();
+	var userName = $("#regUserName").val();
+	var userPw = $("#regPassword").val();
+	localStorage.setItem(userName, userPw);///maybe value???
+	alert('registration seccesful!');
+	//changeView(settings);
 }
+
+
 
 // check if stored data from register-form is equal to entered data in the   login-form
 function check() {
@@ -214,14 +273,73 @@ function check() {
 	// check if stored data from register-form is equal to data from login form
 	if (userPw.value == storedPw) {
 		alert('You are loged in!');
+
+		return true;
 		//Game();
 	} else {
 		alert('user name not exist!');
+		return false;
 	}
 }
 
 function init() {
 	localStorage.setItem("p", "p");
+}
 
+function changeView(pageName) {
+	if (pageName == login) {
+		$("#welcome").hide();
+		$("#login").show();
+		$("#register").hide();
+		$("#about").hide();
+		$("#settings").hide();
+		$("#Game").hide();
+
+
+	}
+	else if (pageName == welcome) {
+		$("#welcome").show();
+		$("#login").hide();
+		$("#register").hide();
+		$("#about").hide();
+		$("#settings").hide();
+		$("#Game").hide();
+
+
+	}
+	else if (pageName == register) {
+		$("#welcome").hide();
+		$("#login").hide();
+		$("#register").show();
+		$("#about").hide();
+		$("#settings").hide();
+		$("#Game").hide();
+
+	}
+	else if (pageName == settings) {
+		$("#welcome").hide();
+		$("#login").hide();
+		$("#register").hide();
+		$("#about").hide();
+		$("#settings").show();
+		$("#Game").hide();
+
+	}
+	else if (pageName == Game) {
+		$("#welcome").hide();
+		$("#login").hide();
+		$("#register").hide();
+		$("#about").hide();
+		$("#settings").hide();
+		$("#Game").show();
+
+	}
+}
+
+function checkHTML() {
+	var answer = check();
+	if (answer == true) {
+		changeView(settings);
+	}
 }
 

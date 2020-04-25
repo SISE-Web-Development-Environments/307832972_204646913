@@ -19,59 +19,20 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
-	
+
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.js"
+		type="text/javascript"></script>
+
 </head>
 
 <script>
 
 	window.onload = init();
 
-	function welcome() {
-		var a = document.getElementById("welcome");
-		a.style.display = 'block';
-		var b = document.getElementById("register");
-		b.style.display = 'none';
-		var c = document.getElementById("login");
-		c.style.display = 'none';
-		var d = document.getElementById("about");
-		d.style.display = 'none';
-
-	}
-	function register() {
-		var a = document.getElementById("welcome");
-		a.style.display = 'none';
-		var b = document.getElementById("register");
-		b.style.display = 'block';
-		var c = document.getElementById("login");
-		c.style.display = 'none';
-		var d = document.getElementById("about");
-		d.style.display = 'none';
-
-	}
-
-	function login() {
-		var a = document.getElementById("welcome");
-		a.style.display = 'none';
-		var b = document.getElementById("register");
-		b.style.display = 'none';
-		var c = document.getElementById("login");
-		c.style.display = 'block';
-		var d = document.getElementById("about");
-		d.style.display = 'none';
-
-	}
-
-	function Game() {
-		var a = document.getElementById("welcome");
-		a.style.display = 'none';
-		var b = document.getElementById("register");
-		b.style.display = 'none';
-		var c = document.getElementById("login");
-		c.style.display = 'none';
-		var d = document.getElementById("about");
-		d.style.display = 'none';
-		var e = document.getElementById("Game");
-		e.style.display = 'block';
+	/***settings***/
+	function uniKeyCode(event) {
+		var key = event.keyCode;
+		document.getElementById("demo2").innerHTML = "The Unicode KEY code is: " + key;
 	}
 </script>
 
@@ -84,11 +45,13 @@
 
 	<div id='cssmenu'>
 		<ul>
-			<li><a id="welcomeBotton" href="#" onclick="welcome()" class="btn"><i aria-hidden="true"></i>Welcome</a></li>
+			<li><a id="welcomeBotton" href="#" onclick="changeView(welcome)" class="btn"><i aria-hidden="true"></i>Welcome</a>
+			</li>
 
-			<li><a id="registerBotton" href="#" onclick="register()" class="btn"><i aria-hidden="true"></i>Register</a></li>
+			<li><a id="registerBotton" href="#" onclick="changeView(register)" class="btn"><i
+						aria-hidden="true"></i>Register</a></li>
 
-			<li><a id="loginBotton" href="#" onclick="login()" class="btn"><i aria-hidden="true"></i>Login</a></li>
+			<li><a id="loginBotton" href="#" onclick="changeView(login)" class="btn"><i aria-hidden="true"></i>Login</a></li>
 
 			<li><a href="#" data-toggle="modal" data-target="#myModal">About</a></li>
 		</ul>
@@ -105,8 +68,9 @@
 				<input id="password" type="password" class="form-control" placeholder="Your Password *" value="" />
 			</div>
 			<div class="form-group">
-				<input type="submit" class="btnSubmit" value="login" onclick="check()" />
+				<input type="button" class="btnSubmit" value="login" onclick="checkHTML(settings)">
 			</div>
+
 			<div class="form-group">
 
 				<a href="#" class="ForgetPwd" value="login">Forget Password?</a>
@@ -114,32 +78,37 @@
 		</form>
 	</div>
 
-	<div id="register" style="display:none">
+	<div id="register" name="registerName" style="display:none">
 		<h3>Register</h3>
-		<form>
+		<form id="registerForm" name="registerForm" method="POST">
 			<div class="form-group">
-				<input id="regUserName" type="text" class="form-control" placeholder="Your User Name *" value="" />
+				<input id="regUserName" type="text" name="regUserName" class="form-control" placeholder="Your User Name *"
+					value="" />
 			</div>
 			<div class="form-group">
-				<input id="regPassword" type="text" class="form-control" placeholder="Your Password *" value="" />
+				<input id="regPassword" type="password" name="regPassword" class="form-control" placeholder="Your Password *"
+					value="" />
 			</div>
 			<div class="form-group">
-				<input id="fullName" type="text" class="form-control" placeholder="Your Full Name *" value="" />
+				<input id="fullName" type="text" name="fullName" class="form-control" placeholder="Your Full Name *" value="" />
 			</div>
 			<div class="form-group">
-				<input id="E-mail" type="text" class="form-control" placeholder="Your E-mail *" value="" />
+				<input id="Email" type="email" name="Email" class="form-control" placeholder="Your E-mail *" value="" />
 			</div>
 			<div class="form-group">
-				<input id="E-mail" type="date" class="form-control" placeholder="Your E-mail *" value=""/>
+				<input id="date" type="date" name="date" class="form-control" placeholder="Your E-mail *" value="" />
 			</div>
-			<div class="form-group">
-				<input type="submit" class="btnSubmit" value="register" onclick="store()" />
-			</div>
-			<div class="form-group">
 
-				<a href="#" class="ForgetPwd" value="register">Forget Password?</a>
+			<!--<div class="form-group">
+				<input type="submit" name = "submit" class="btnSubmit" value="register"  onclick="store()"/>
 			</div>
+		-->
+
 		</form>
+		<div>
+			<input id="btn" type="button" value="Validate"/>
+	</div>
+
 	</div>
 
 	<!-- Modal -->
@@ -183,24 +152,26 @@
 			<br /><br />
 			<div class="row">
 				<div style="padding-left:30ex;">
-					<button type="button" class="btn btn-primary btn-lg" onclick="register()">Register</button>
+					<button type="button" class="btn btn-primary btn-lg" onclick="changeView(register)">Register</button>
 				</div>
 				<div style="padding-left:30ex;">
 
-					<button type="button" class="btn btn-primary btn-lg" onclick="login()">Login</button>
+					<button type="button" class="btn btn-primary btn-lg" onclick="changeView(login)">Login</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<div id="settings" style="display:none">
-		<h3>Register</h3>
+		<h3>Settings</h3>
 		<form>
 			<div class="form-group">
 				<input id="userName" type="text" class="form-control" placeholder="Your User Name *" value="" />
 			</div>
 			<div class="form-group">
-				<input id="upBotton" type="text" class="form-control" placeholder="Up botton *" value="" />
+				<input id="upBotton" type="text" size="50" onkeydown="uniKeyCode(event)" class="form-control"
+					placeholder="Up botton *" value="" />
+				<p>onkeydown - <span id="demo2"></span></p>
 			</div>
 			<div class="form-group">
 				<input id="downBotton" type="text" class="form-control" placeholder="Down botton *" value="" />
@@ -212,13 +183,13 @@
 				<input id="rightBotton" type="text" class="form-control" placeholder="Right botton *" value="" />
 				<div class="form-group">
 					<input id="numberOfBalls" type="number" class="form-control" placeholder="number of balls *" value="" />
-			</div>
-			<div class="form-group">
-				<input type="submit" class="btnSubmit" value="register" onclick="start()" />
-			</div>
-			<div class="form-group">
+				</div>
+				<div class="form-group">
+					<input type="botton" class="btnSubmit" value="register" onclick="changeView(Game)" />
+				</div>
+				<div class="form-group">
 
-			</div>
+				</div>
 		</form>
 	</div>
 
