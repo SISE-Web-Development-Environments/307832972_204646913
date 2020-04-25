@@ -10,9 +10,21 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 	<link rel="stylesheet" href="style.css">
+
+	<title>Bootstrap Example</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
 </head>
 
 <script>
+
+	window.onload = init();
+
 	function welcome() {
 		var a = document.getElementById("welcome");
 		a.style.display = 'block';
@@ -47,7 +59,8 @@
 		d.style.display = 'none';
 
 	}
-	function about() {
+
+	function Game() {
 		var a = document.getElementById("welcome");
 		a.style.display = 'none';
 		var b = document.getElementById("register");
@@ -55,9 +68,13 @@
 		var c = document.getElementById("login");
 		c.style.display = 'none';
 		var d = document.getElementById("about");
-		d.style.display = 'block';
+		d.style.display = 'none';
+		var e = document.getElementById("Game");
+		e.style.display = 'block';
+
 
 	}
+
 </script>
 
 <body>
@@ -74,22 +91,22 @@
 
 			<li><a id="loginBotton" href="#" onclick="login()" class="btn"><i aria-hidden="true"></i>Login</a></li>
 
-			<li><a id="aboutBotton" href="#" onclick="about()" class="btn"><i aria-hidden="true"></i>Register</a></li>
+			<li><a href="#" data-toggle="modal" data-target="#myModal">About</a></li>
 		</ul>
 
 
 	</div>
-	<div id="login" style="display:none" class="col-md-6 login-form-2">
+	<div id="login" style="display:none">
 		<h3>Login</h3>
 		<form>
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Your Email *" value="" />
+				<input id="userName" type="text" class="form-control" placeholder="Your User Name *" value="" />
 			</div>
 			<div class="form-group">
-				<input type="password" class="form-control" placeholder="Your Password *" value="" />
+				<input id="password" type="password" class="form-control" placeholder="Your Password *" value="" />
 			</div>
 			<div class="form-group">
-				<input type="submit" class="btnSubmit" value="login" />
+				<input type="submit" class="btnSubmit" value="login" onclick="check()" />
 			</div>
 			<div class="form-group">
 
@@ -97,11 +114,45 @@
 			</div>
 		</form>
 	</div>
-	<div id="register">
+
+	<div id="register" style="display:none">
 		<h3>Register</h3>
+		<form>
+			<div class="form-group">
+				<input id="userName" type="text" class="form-control" placeholder="Your User Name *" value="" />
+			</div>
+			<div class="form-group">
+				<input id="password" type="password" class="form-control" placeholder="Your Password *" value="" />
+			</div>
+			<div class="form-group">
+				<input type="submit" class="btnSubmit" value="register" onclick="store()" />
+			</div>
+			<div class="form-group">
+
+				<a href="#" class="ForgetPwd" value="register">Forget Password?</a>
+			</div>
+		</form>
 	</div>
 
-	
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>Some text in the modal.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div id="Game" style="display: none;">
 		<div id="score">
 			<label for="lblScore">SCORE:</label>
@@ -117,7 +168,50 @@
 	</div>
 
 	<div id="welcome" style="display: block;">
-		<img src="imgs/pacman_logo.jpeg" alt="Italian Trulli">
+		<div class="container mx-auto">
+			<div class="row">
+				<img src="imgs/pacman_logo.jpeg" alt="Italian Trulli">
+			</div>
+			<br /><br />
+			<div class="row">
+				<div style="padding-left:30ex;">
+					<button type="button" class="btn btn-primary btn-lg" onclick="register()">Register</button>
+				</div>
+				<div style="padding-left:30ex;">
+
+					<button type="button" class="btn btn-primary btn-lg" onclick="login()">Login</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="settings" style="display:none">
+		<h3>Register</h3>
+		<form>
+			<div class="form-group">
+				<input id="userName" type="text" class="form-control" placeholder="Your User Name *" value="" />
+			</div>
+			<div class="form-group">
+				<input id="upBotton" type="text" class="form-control" placeholder="Up botton *" value="" />
+			</div>
+			<div class="form-group">
+				<input id="downBotton" type="text" class="form-control" placeholder="Down botton *" value="" />
+			</div>
+			<div class="form-group">
+				<input id="leftBotton" type="text" class="form-control" placeholder="Left botton *" value="" />
+			</div>
+			<div class="form-group">
+				<input id="rightBotton" type="text" class="form-control" placeholder="Right botton *" value="" />
+				<div class="form-group">
+					<input id="numberOfBalls" type="number" class="form-control" placeholder="number of balls *" value="" />
+			</div>
+			<div class="form-group">
+				<input type="submit" class="btnSubmit" value="register" onclick="start()" />
+			</div>
+			<div class="form-group">
+
+			</div>
+		</form>
 	</div>
 
 

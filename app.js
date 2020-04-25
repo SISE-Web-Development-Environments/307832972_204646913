@@ -7,9 +7,11 @@ var start_time;
 var time_elapsed;
 var interval;
 
-$(document).ready(function() {
+$(document).ready(function () {
 	context = canvas.getContext("2d");
+	init();
 	Start();
+
 });
 
 function Start() {
@@ -57,14 +59,14 @@ function Start() {
 	keysDown = {};
 	addEventListener(
 		"keydown",
-		function(e) {
+		function (e) {
 			keysDown[e.keyCode] = true;
 		},
 		false
 	);
 	addEventListener(
 		"keyup",
-		function(e) {
+		function (e) {
 			keysDown[e.keyCode] = false;
 		},
 		false
@@ -170,3 +172,56 @@ function UpdatePosition() {
 		Draw();
 	}
 }
+/********************logIn***************************/
+
+var userName = document.getElementById('userName');
+var password = document.getElementById('password');
+
+// storing input from register-form
+/*
+function checkReg(){
+	var userName = document.getElementById('userName');
+	var userPw = document.getElementById('password');
+	var storedPw = localStorage.getItem(userName.value);
+
+	// check if stored data from register-form is equal to data from login form
+	if (storedPw.value==null) {
+		store();
+		alert('registration sseccesful!');
+	} 
+	else {
+		alert('there is already same user name in the system, choose diffrent user name');
+	}
+}
+*/
+
+function store() {
+	var userName = document.getElementById('userName');
+	var userPw = document.getElementById('password');
+	localStorage.setItem(userName.value,userPw.value);
+	alert(userName);
+	alert('registration sseccesful!');
+}
+
+// check if stored data from register-form is equal to entered data in the   login-form
+function check() {
+
+	// entered data from the login-form
+	var userName = document.getElementById('userName');
+	var userPw = document.getElementById('password');
+	var storedPw = localStorage.getItem(userName.value);
+
+	// check if stored data from register-form is equal to data from login form
+	if (userPw.value == storedPw) {
+		alert('You are loged in!');
+		//Game();
+	} else {
+		alert('user name not exist!');
+	}
+}
+
+function init() {
+	localStorage.setItem("p", "p");
+
+}
+
