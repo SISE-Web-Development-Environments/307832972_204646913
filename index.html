@@ -161,30 +161,33 @@
 		</div>
 	</div>
 
-	<div id="settings" style="display:none">
-		<h3>Settings</h3>
+	<div id="settings" class="container mx-auto" style="display:none">
+		<h3 class="text-center">Settings</h3>
 		<form>
 			<div class="form-group">
-				<input id="userName" type="text" class="form-control" placeholder="Your User Name *" value="" />
-			</div>
-			<div class="form-group">
+				<h5><strong>Up Botton:</strong> (press the key you want to change the default value) </h5>
 				<input id="upBotton" type="text" size="50" onkeydown="uniKeyCode(event)" class="form-control"
-					placeholder="Up botton *" value="" />
+					placeholder="default value up arrow" value="" />
 				<p>onkeydown - <span id="demo2"></span></p>
 			</div>
 			<div class="form-group">
-				<input id="downBotton" type="text" class="form-control" placeholder="Down botton *" value="" />
+				<h5><strong>Down Botton:</strong> (press the key you want to change the default value) </h5>
+				<input id="downBotton" type="text" class="form-control" placeholder="default value down arrow" value="" />
 			</div>
 			<div class="form-group">
-				<input id="leftBotton" type="text" class="form-control" placeholder="Left botton *" value="" />
+				<h5><strong>Left Botton:</strong> (press the key you want to change the default value) </h5>
+				<input id="leftBotton" type="text" class="form-control" placeholder="default value left arrow" value="" />
 			</div>
 			<div class="form-group">
-				<input id="rightBotton" type="text" class="form-control" placeholder="Right botton *" value="" />
+				<h5><strong>Right Botton:</strong> (press the key you want to change the default value) </h5>
+				<input id="rightBotton" type="text" class="form-control" placeholder="default value right arrow" value="" />
 				<div class="form-group">
+					<h5><strong>Choose Number Of Balls:</strong> (between 50 to 90) </h5>
 					<input id="numberOfBalls" type="number" class="form-control" placeholder="number of balls *" value="" />
 				</div>
 				<div class="form-group">
-					<input type="button" class="btnSubmit" value="register" onclick="changeView(Game)" />
+
+	<input id = "submitSettings" type="button" class="btn btn-success btn-lg" value="register" />
 				</div>
 				<div class="form-group">
 

@@ -12,11 +12,12 @@ $(document).ready(function () {
 	init();
 	Start();
 
-	jQuery.validator.addMethod("lettersonly", function(value, element) {
+	
+	jQuery.validator.addMethod("lettersonly", function (value, element) {
 		return this.optional(element) || /^[a-z]+$/i.test(value);
 	}, "Letters only please");
 
-	jQuery.validator.addMethod("lettersAndNumbers", function(value, element) {
+	jQuery.validator.addMethod("lettersAndNumbers", function (value, element) {
 		return this.optional(element) || /[a-z].[0-9]|[0-9].[a-z]/i.test(value);
 	}, "password must contain both numbers and letters please");
 
@@ -31,11 +32,11 @@ $(document).ready(function () {
 				minlength: 6,
 				lettersAndNumbers: true
 			},
-			regUserName:{
+			regUserName: {
 				required: true,
 			},
 			Email: {
-				required:true,
+				required: true,
 				email: true
 			},
 			date: {
@@ -51,11 +52,11 @@ $(document).ready(function () {
 				required: "please enter a valid password",
 				minlength: "Your password most consist at least 6 characters"
 			},
-			regUserName:{
+			regUserName: {
 				required: "Please enter your user name",
 			},
 			Email: {
-				required : "please enter a valid email",
+				required: "please enter a valid email",
 			},
 			date: {
 				required: "Please enter your birthdate",
@@ -67,7 +68,10 @@ $(document).ready(function () {
 			changeView(settings);
 		}
 	});
+	$('#submitSettings').click(function () {
+		(initGame());
 
+	});
 });
 
 function Start() {
@@ -341,5 +345,23 @@ function checkHTML() {
 	if (answer == true) {
 		changeView(settings);
 	}
+}
+
+function initGame() {
+	changeView(Game);
+	var up = $("#upBotton").val();
+	if (up==""){
+		up = "38";
+	} else {
+		up = $("#demo2").innerHTML;
+	}
+	
+
+	$('#upBotton').defaultValue = "38";
+	$('#downBotton').defaultValue = "40";
+	$('#leftBotton').defaultValue = "37";
+	$('#rightBotton').defaultValue = "39";
+	alert(up);
+
 }
 
