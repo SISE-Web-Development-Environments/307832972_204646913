@@ -353,7 +353,14 @@ function initGame() {
 	if (up==""){
 		up = "38";
 	} else {
-		up = $("#demo2").innerHTML;
+		up = up.keyCode();
+	}
+
+	var down = $("#downBotton").val();
+	if (down==""){
+		down = "38";
+	} else {
+		down = $("#demo2").innerHTML;
 	}
 	
 
@@ -363,5 +370,11 @@ function initGame() {
 	$('#rightBotton').defaultValue = "39";
 	alert(up);
 
+}
+
+/***settings***/
+function uniKeyCode(event) {
+	var key = event.keyCode;
+	//document.getElementById("demo2").innerHTML = "The Unicode KEY code is: " + key;
 }
 
