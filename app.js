@@ -372,9 +372,5 @@ function initGame() {
 
 }
 
-/***settings***/
-function uniKeyCode(event) {
-	var key = event.keyCode;
-	//document.getElementById("demo2").innerHTML = "The Unicode KEY code is: " + key;
-}
+
 
