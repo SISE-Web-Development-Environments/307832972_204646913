@@ -11,7 +11,7 @@
 
 	<link rel="stylesheet" href="style.css">
 
-	<title>Bootstrap Example</title>
+	<title>PACMAN-DASH</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -29,17 +29,15 @@
 
 	window.onload = init();
 	/***settings***/
-	function uniKeyCode(event) {
-		var key = event.keyCode;
-		document.getElementById("demo2").innerHTML = "The Unicode KEY code is: " + key;
-	}
-	
+
+
 </script>
 
 
 <body>
 	<header>
-		<img src="imgs/pacman_logo.jpeg" alt="Italian Trulli">
+		<img src="imgs/logo.png" alt="Italian Trulli">
+		<h3 id="names">Omer Hofman: 307832972  |  Yiftah Szoke: 204646913</h3>
 	</header>
 
 
@@ -70,7 +68,8 @@
 				<input id="password" type="password" class="form-control" placeholder="Your Password *" value="" />
 			</div>
 			<div class="form-group">
-				<input type="button" class="btnSubmit btn btn-success btn-lg mx-auto" value="login" onclick="checkHTML(settings)">
+				<input type="button" class="btnSubmit btn btn-success btn-lg mx-auto" value="login"
+					onclick="checkHTML(settings)">
 			</div>
 		</form>
 	</div>
@@ -119,8 +118,10 @@
 				</div>
 				<div class="modal-body">
 					<p><strong>Authors: Yiftah Szoke & Omer Hofman</strong>
-						<br>We use jQuery Plugin for registration validation (rules+ messages) and implement templates for letters only validation (full name) and letters & numbers validation (password).<br>
-						We encounter some difficulties in this assignment, our biggest challenge was resolve error in the code and learn JS language.</p>
+						<br>We use jQuery Plugin for registration validation (rules+ messages) and implement templates for letters
+						only validation (full name) and letters & numbers validation (password).<br>
+						We encounter some difficulties in this assignment, our biggest challenge was resolve error in the code and
+						learn JS language.</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -130,32 +131,50 @@
 	</div>
 
 	<div id="Game" style="display: none;" class="container mx-auto">
+		<label id="lblUserName"></label>
 		<div id="score">
 			<label for="lblScore">SCORE:</label>
 			<input id="lblScore" type="text" />
-		</div>
-		<div id="time">
 			<label for="lblTime">TIME:</label>
 			<input id="lblTime" type="text" />
+			<label for="lblLife">LIFE:</label>
+			<input id="lblLife" type="text" />
 		</div>
 		<div id="game">
 			<canvas id="canvas" height="600" width="600"></canvas>
 		</div>
+
+		<div id="canvasSettings">
+
+			<label id="lblNumOfBalls"></label>
+			<hr class="mt-3 mb-3">
+			<label id="lblFullTime"></label>
+			<hr class="mt-3 mb-3">
+			<label id="lblMonsters"></label>
+			<hr class="mt-3 mb-3">
+			<label id="lblFirstBallColor"></label>
+			<hr class="mt-3 mb-3">
+			<label id="lblSecondBallColor"></label>
+			<hr class="mt-3 mb-3">
+			<label id="lblThirdBallColor"></label>
+
+		</div>
+		<div id="startNewGameCanvas">
+			<input id="startNewGame" type="button" class=" btn btn-success btn-lg mx-auto" value="Start New Game" />
+		</div>
 	</div>
 
-	<div id="welcome" style="display: block;" class="container mx-auto">
-		<div class="container mx-auto">
-			<div class="row">
-				<img src="imgs/pacman_logo.jpeg" alt="Italian Trulli">
+
+	<div id="welcome"  style="display: block;">
+		<div>
+			<div >
+				<img src="imgs/logo.png" alt="Italian Trulli">
 			</div>
 			<br /><br />
-			<div class="row">
-				<div style="padding-left:30ex;">
-					<button type="button" class="btn btn-primary btn-lg" onclick="changeView(register)">Register</button>
-				</div>
-				<div style="padding-left:30ex;">
-
-					<button type="button" class="btn btn-primary btn-lg" onclick="changeView(login)">Login</button>
+			<div >
+				<div>
+					<button type="button" class="btn btn-success btn-lg" onclick="changeView(register)">Register</button>
+					<button type="button" class="btn btn-success btn-lg" onclick="changeView(login)">Login</button>
 				</div>
 			</div>
 		</div>
@@ -181,22 +200,48 @@
 			<div class="form-group">
 				<h5><strong>Right Botton:</strong> (press the key you want to change the default value) </h5>
 				<input id="rightBotton" type="text" class="form-control" placeholder="default value right arrow" value="" />
-				<div class="form-group">
-					<h5><strong>Choose Number Of Balls:</strong> (between 50 to 90) </h5>
-					<input id="numberOfBalls" type="number" class="form-control" placeholder="number of balls *" value="" />
-				</div>
-				<div class="form-group">
+			</div>
+			<div class="form-group">
+				<h5><strong>Choose Number Of Balls:</strong> (between 50 to 90) </h5>
+				<input id="numberOfBalls" type="number" class="form-control" placeholder="number of balls *" value="" />
+			</div>
+			<div class="form-group">
+				<h5><strong>Choose color Of first ball- 5 points ball:</strong> (red/green/blue...) </h5>
+				<input id="firstBallColor" type="text
+				
+				" class="form-control" placeholder="number of balls *" value="" />
+			</div>
 
-	<input id = "submitSettings" type="button" class="btn btn-success btn-lg" value="register" />
+			<div class="form-group">
+				<h5><strong>Choose color Of second ball- 15 points ball:</strong> (red/green/blue...) </h5>
+				<input id="secondBallColor" type="text" class="form-control" placeholder="number of balls *" value="" />
+			</div>
+
+			<div class="form-group">
+				<h5><strong>Choose color Of third ball- 25 points ball:</strong> (red/green/blue...) </h5>
+				<input id="thirdBallColor" type="text" class="form-control" placeholder="number of balls" value="" />
+
+				<div class="form-group">
+					<h5><strong>Choose the time of game in seconds:</strong> (minimum 60 seconds) </h5>
+					<input id="timeOfGame" type="number" class="form-control" placeholder="time of game *" value="" />
 				</div>
 				<div class="form-group">
-
+					<h5><strong>Choose the number of monsters:</strong> (between 1-4) </h5>
+					<input id="numberOfMonsters" type="number" class="form-control" placeholder="number of monsters" value="" />
 				</div>
+				<button type="button" class="btn btn-primary btn-lg" onclick="randomSettings()">random</button>
+				<input id="submitSettings" type="button" class="btn btn-success btn-lg" value="submit" />
+			</div>
+			<div class="form-group">
+
+			</div>
 		</form>
 	</div>
 
 	<footer>
-
+		<hr class="mt-3 mb-3">
+		<h3>for more information about the game- contact:</h3>
+		<h3>yszoke@gmail.com</h3>
 	</footer>
 </body>
 

@@ -2,14 +2,49 @@
 --------------------------menu design-----------------------------
 */
 
+footer{
+background-color: #f96e5b;
+text-align: center;
+}
+
 h1
 {
 	background: #939997;
 
 }
-h4
+#names
 {
-	margin: 5 px;
+  margin: 0;
+  margin-bottom: 0;
+  color:white;
+}
+
+body{
+  min-width: 1366;
+  min-height: 768;
+}
+
+#canvas{
+  width:55%;
+  margin-right:2%;
+  float: left;
+  background-image: url(imgs/background2.png);
+  border: 30px solid transparent;
+  border-image: url(imgs/wall.png) 30% round;
+  border-image-width: 30px;
+}
+#canvasSettings{
+  width:42%;
+  float: left;
+}
+
+header{
+  background-color: #4B3F3D;
+  text-align: center;
+}
+
+#welcome{
+  text-align: center;
 
 }
 
