@@ -25,7 +25,7 @@ var takeMedicine = false;
 var takeClock = false;
 var timeOfGame;
 var audio = new Audio('audio/background.mpeg');
-var realNumOfBalls=0;
+var realNumOfBalls = 0;
 $(document).ready(function () {
 	context = canvas.getContext("2d");
 	init();
@@ -38,6 +38,15 @@ $(document).ready(function () {
 	jQuery.validator.addMethod("lettersAndNumbers", function (value, element) {
 		return this.optional(element) || /[a-z].[0-9]|[0-9].[a-z]/i.test(value);
 	}, "password must contain both numbers and letters please");
+
+	jQuery.validator.addMethod("time", function (value, element) {
+		return this.optional(element) || /^([6-9]\d|[1-9]\d{2,})$/i.test(value);
+	}, "the time of the game must be bigger than 60");
+
+	jQuery.validator.addMethod("numberonly", function (value, element) {
+		return this.optional(element) || /^[5-8][0-9]?$|^90$/i.test(value);
+	}, "the number of balls must be between 50-90");
+
 
 	$('#registerForm').validate({
 		rules: {
@@ -81,15 +90,66 @@ $(document).ready(function () {
 			}
 		}
 	})
+
 	$('#btn').click(function () {
 		if ($("#registerForm").valid()) {
+			store();
 			changeView(settings);
 		}
 	});
+
 	$('#submitSettings').click(function () {
-		(initGame());
+		if ($("#settingForm").valid()) {
+			initGame();
+		}
 
 	});
+
+	$('#settingForm').validate({
+		rules: {
+			upBotton: {
+				maxlength: 1,
+			},
+			downBotton: {
+				maxlength: 1,
+			},
+			leftBotton: {
+				maxlength: 1,
+			},
+			rightBotton: {
+				maxlength: 1,
+			},
+			numberOfBalls: {
+				required: true,
+				numberonly: true
+			},
+			timeOfGame: {
+				required: true,
+				time: true
+			},
+		},
+		messages: {
+			upBotton: {
+				maxlength: "Please enter 1 character only",
+			},
+			downBotton: {
+				maxlength: "Please enter 1 character only",
+			},
+			leftBotton: {
+				maxlength: "Please enter 1 character only",
+			},
+			rightBotton: {
+				maxlength: "Please enter 1 character only",
+			},
+			numberOfBalls: {
+				required: "please enter a number between 50-90",
+			},
+			timeOfGame: {
+				required: "please enter a number bigger than 60",
+			}
+		}
+	})
+
 	$('#startNewGame').click(function () {
 		window.clearInterval(interval);
 		initGame();
@@ -98,7 +158,7 @@ $(document).ready(function () {
 
 });
 
-function Start(numOfBalls, timeOfGame, numOfMonsters, firstColor, secondColor, thirdColor, up,down, left, right) {
+function Start(numOfBalls, timeOfGame, numOfMonsters, firstColor, secondColor, thirdColor, up, down, left, right) {
 	board = new Array();
 	score = 0;
 	pac_color = "yellow";
@@ -204,9 +264,9 @@ function Start(numOfBalls, timeOfGame, numOfMonsters, firstColor, secondColor, t
 		false
 	);
 
-	for(let i=0; i<10; i++){
-		for(let j=0; j<10; j++){
-			if(board[i][j]==5 ||board[i][j]==6||board[i][j]==7){
+	for (let i = 0; i < 10; i++) {
+		for (let j = 0; j < 10; j++) {
+			if (board[i][j] == 5 || board[i][j] == 6 || board[i][j] == 7) {
 				realNumOfBalls++;
 			}
 		}
@@ -259,8 +319,8 @@ function placeGhosts(numOfMonsters) {
 }
 
 function findRandomEmptyCell(board) {
-	var i = Math.floor(Math.random() * 9 + 1);
-	var j = Math.floor(Math.random() * 9 + 1);
+	let i = Math.floor(Math.random() * 9 + 1);
+	let j = Math.floor(Math.random() * 9 + 1);
 	while (board[i][j] != 0) {
 		i = Math.floor(Math.random() * 9 + 1);
 		j = Math.floor(Math.random() * 9 + 1);
@@ -329,11 +389,6 @@ function Draw(firstColor, secondColor, thirdColor, x) {
 				}
 				context.fillStyle = "black"; //color
 				context.fill();
-				/*
-				if(x==1){
-					context.rotate(20 * Math.PI / 180);
-				}*/
-
 
 			} else if (board[i][j] == 5) {
 				context.beginPath();
@@ -398,7 +453,7 @@ function Draw(firstColor, secondColor, thirdColor, x) {
 
 function UpdatePosition(timeOfGame, firstColor, secondColor, thirdColor, numOfMonsters, up, down, left, right) {
 	board[shape.i][shape.j] = 0;
-	var x = GetKeyPressed(up, down, left, right);
+	let x = GetKeyPressed(up, down, left, right);
 	if (x == 1) {
 		if (shape.j > 0 && board[shape.i][shape.j - 1] != 4) {
 			shape.j--;
@@ -506,7 +561,7 @@ function UpdatePosition(timeOfGame, firstColor, secondColor, thirdColor, numOfMo
 
 
 	board[shape.i][shape.j] = 2;
-	var currentTime = new Date();
+	let currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
 	if (takeClock) {
 
@@ -536,7 +591,7 @@ function UpdatePosition(timeOfGame, firstColor, secondColor, thirdColor, numOfMo
 		}
 	}
 
-	if (realNumOfBalls<=0) {
+	if (realNumOfBalls <= 0) {
 		window.clearInterval(interval);
 		window.alert("Winner!!!");
 	} else {
@@ -618,8 +673,8 @@ function checkGhostsColission(numOfMonsters) {
 }
 
 function placePacman() {
-	var x = Math.floor(Math.random() * 10);
-	var y = Math.floor(Math.random() * 10);
+	let x = Math.floor(Math.random() * 10);
+	let y = Math.floor(Math.random() * 10);
 	while ((x == 0 && y == 0) || (x == 9 && y == 9) || (x == 0 && y == 9) || (x == 9 && y == 0) || (board[x][y] == 4)) {
 		x = Math.floor(Math.random() * 10);
 		y = Math.floor(Math.random() * 10);
@@ -631,7 +686,7 @@ function placePacman() {
 }
 
 function updateBonusPosition() {
-	var x = Math.floor(Math.random() * 4);
+	let x = Math.floor(Math.random() * 4);
 	if (x == 0 && bonus.i + 1 < 10 && (board[bonus.i + 1][bonus.j] == 0 || (board[bonus.i + 1][bonus.j] == 5) ||
 		(board[bonus.i + 1][bonus.j] == 6) || (board[bonus.i + 1][bonus.j] == 7))) {
 		bonus.i++;
@@ -704,49 +759,26 @@ function updateGhostPosition(ghost) {
 var userName = document.getElementById('userName');
 var password = document.getElementById('password');
 
-// storing input from register-form
-/*
-function checkReg(){
-	var userName = document.getElementById('userName');
-	var userPw = document.getElementById('password');
-	var storedPw = localStorage.getItem(userName.value);
-
-	// check if stored data from register-form is equal to data from login form
-	if (storedPw.value==null) {
-		store();
-		alert('registration sseccesful!');
-	} 
-	else {
-		alert('there is already same user name in the system, choose diffrent user name');
-	}
-}
-*/
-
 function store() {
-	validate1();
 	userName = $("#regUserName").val();
-	var userPw = $("#regPassword").val();
-	localStorage.setItem(userName, userPw);///maybe value???
+	let userPw = $("#regPassword").val();
+	localStorage.setItem(userName, userPw);
 	alert('registration seccesful!');
-	//changeView(settings);
 
 }
-
-
 
 // check if stored data from register-form is equal to entered data in the   login-form
 function check() {
 
 	// entered data from the login-form
 	userName = document.getElementById('userName');
-	var userPw = document.getElementById('password');
-	var storedPw = localStorage.getItem(userName.value);
+	let userPw = document.getElementById('password');
+	let storedPw = localStorage.getItem(userName.value);
 
 	// check if stored data from register-form is equal to data from login form
 	if (userPw.value == storedPw) {
 		alert('You are loged in!');
 		return true;
-		//Game();
 	} else {
 		alert('user name not exist!');
 		return false;
@@ -808,35 +840,28 @@ function changeView(pageName) {
 }
 
 function checkHTML() {
-	var answer = check();
+	let answer = check();
 	if (answer == true) {
 		changeView(settings);
 	}
 }
 
 function randomSettings() {
-	var numOfBalls = Math.floor(Math.random() * 41) + 50;
+	let numOfBalls = Math.floor(Math.random() * 41) + 50;
 	$("#numberOfBalls").val(numOfBalls);
-	var timeOfGame = Math.floor(Math.random() * 61) + 60;
+	let timeOfGame = Math.floor(Math.random() * 61) + 60;
 	$("#timeOfGame").val(timeOfGame);
-	var numOfMonsters = Math.floor(Math.random() * 4) + 1;
+	let numOfMonsters = Math.floor(Math.random() * 4) + 1;
 	$("#numberOfMonsters").val(numOfMonsters);
-	var firstColor = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
+	let firstColor = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
 	$("#firstBallColor").val(firstColor);
-	var secondColor = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
+	let secondColor = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
 	$("#secondBallColor").val(secondColor);
-	var thirdColor = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
+	let thirdColor = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
 	$("#thirdBallColor").val(thirdColor);
 }
 
-
-function uniKeyCode(event) {
-	var up = event.keyCode;
-	$("#upBotton").val(up);
-}
-
 function initGame() {
-	//await new Promise(r => setTimeout(r,2000));
 	life = 5;
 	changeView(Game);
 	let up = $("#upBotton").val();
@@ -864,38 +889,38 @@ function initGame() {
 		right = right.toUpperCase().charCodeAt(0);
 	}
 
-	var upChar = $("#upBotton").val();
-	if(upChar==""){
-		upChar="UP arrow"
+	let upChar = $("#upBotton").val();
+	if (upChar == "") {
+		upChar = "UP arrow"
 	}
-	else{
+	else {
 		lblUp.value = upChar;
 	}
 	document.getElementById('lblUp').innerHTML = "Up Key: " + upChar;
-	
-	var downChar = $("#downBotton").val();
-	if(downChar==""){
-		downChar="DOWN arrow"
+
+	let downChar = $("#downBotton").val();
+	if (downChar == "") {
+		downChar = "DOWN arrow"
 	}
-	else{
+	else {
 		lblDown.value = downChar;
 	}
 	document.getElementById('lblDown').innerHTML = "Down Key: " + downChar;
 
-	var leftChar = $("#leftBotton").val();
-	if(leftChar==""){
-		leftChar="LEFT arrow"
+	let leftChar = $("#leftBotton").val();
+	if (leftChar == "") {
+		leftChar = "LEFT arrow"
 	}
-	else{
+	else {
 		lblLeft.value = leftChar;
 	}
 	document.getElementById('lblLeft').innerHTML = "Left Key: " + leftChar;
 
-	var rightChar = $("#rightBotton").val();
-	if(rightChar==""){
-		rightChar="RIGHT arrow"
+	let rightChar = $("#rightBotton").val();
+	if (rightChar == "") {
+		rightChar = "RIGHT arrow"
 	}
-	else{
+	else {
 		lblRight.value = rightChar;
 	}
 	document.getElementById('lblRight').innerHTML = "Right Key: " + rightChar;
@@ -920,7 +945,7 @@ function initGame() {
 	document.getElementById('lblThirdBallColor').innerHTML = "High Score Ball Color: " + thirdColor;
 	lblUserName.value = userName;
 	document.getElementById('lblUserName').innerHTML = "User Name: " + userName.value;
-	Start(numOfBalls, timeOfGame, numOfMonsters, firstColor, secondColor, thirdColor,up,down,left,right);
+	Start(numOfBalls, timeOfGame, numOfMonsters, firstColor, secondColor, thirdColor, up, down, left, right);
 
 }
 

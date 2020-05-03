@@ -37,7 +37,7 @@
 <body>
 	<header>
 		<img src="imgs/logo.png" alt="Italian Trulli">
-		<h3 id="names">Omer Hofman: 307832972  |  Yiftah Szoke: 204646913</h3>
+		<h3 id="names">Omer Hofman: 307832972 | Yiftah Szoke: 204646913</h3>
 	</header>
 
 
@@ -102,7 +102,7 @@
 			</div>
 		</form>
 		<div>
-			<input id="btn" type="button" class=" btn btn-success btn-lg mx-auto" value="Validate" />
+			<input id="btn" type="button" class=" btn btn-success btn-lg mx-auto" value="Register" />
 		</div>
 
 	</div>
@@ -140,47 +140,58 @@
 			<label for="lblLife">LIFE:</label>
 			<input id="lblLife" type="text" />
 		</div>
-		<div id="game">
-			<canvas id="canvas" height="600" width="600"></canvas>
+		<div>
+			<div id="game">
+				<canvas id="canvas" height="600" width="600"></canvas>
+
+			</div>
+
+			<div id="canvasSettings">
+				<label id="lblUp"></label>
+				<hr class="mt-3 mb-3">
+				<label id="lblDown"></label>
+				<hr class="mt-3 mb-3">
+				<label id="lblLeft"></label>
+				<hr class="mt-3 mb-3">
+				<label id="lblRight"></label>
+				<hr class="mt-3 mb-3">
+
+
+				<label id="lblNumOfBalls"></label>
+				<hr class="mt-3 mb-3">
+				<label id="lblFullTime"></label>
+				<hr class="mt-3 mb-3">
+				<label id="lblMonsters"></label>
+				<hr class="mt-3 mb-3">
+				<label id="lblFirstBallColor"></label>
+				<hr class="mt-3 mb-3">
+				<label id="lblSecondBallColor"></label>
+				<hr class="mt-3 mb-3">
+				<label id="lblThirdBallColor"></label>
+				<hr class="mt-3 mb-3">
+				<img style="width: 30px;height: 30px;" src="imgs/clock.png">
+				<label>collect the clock to achive additional 30 seconds</label>
+				<hr class="mt-3 mb-3">
+				<img style="width: 30px;height: 30px;" src="imgs/life.png">
+				<label>collect the medicine to achive additional life</label>
+				<hr class="mt-3 mb-3">
+				<img style="width: 30px;height: 30px;" src="imgs/bonus.png">
+				<label>collect the bonus to achive additional 50 points</label>
+			</div>
 		</div>
-
-		<div id="canvasSettings">
-			<label id="lblUp"></label>
-			<hr class="mt-3 mb-3">
-			<label id="lblDown"></label>
-			<hr class="mt-3 mb-3">
-			<label id="lblLeft"></label>
-			<hr class="mt-3 mb-3">
-			<label id="lblRight"></label>
-			<hr class="mt-3 mb-3">
-
-
-			<label id="lblNumOfBalls"></label>
-			<hr class="mt-3 mb-3">
-			<label id="lblFullTime"></label>
-			<hr class="mt-3 mb-3">
-			<label id="lblMonsters"></label>
-			<hr class="mt-3 mb-3">
-			<label id="lblFirstBallColor"></label>
-			<hr class="mt-3 mb-3">
-			<label id="lblSecondBallColor"></label>
-			<hr class="mt-3 mb-3">
-			<label id="lblThirdBallColor"></label>
-
-		</div>
-		<div id="startNewGameCanvas">
+		<div style="float: bottom;">
 			<input id="startNewGame" type="button" class=" btn btn-success btn-lg mx-auto" value="Start New Game" />
 		</div>
 	</div>
 
 
-	<div id="welcome"  style="display: block;">
+	<div id="welcome" style="display: block;">
 		<div>
-			<div >
+			<div>
 				<img src="imgs/logo.png" alt="Italian Trulli">
 			</div>
 			<br /><br />
-			<div >
+			<div>
 				<div>
 					<button type="button" class="btn btn-success btn-lg" onclick="changeView(register)">Register</button>
 					<button type="button" class="btn btn-success btn-lg" onclick="changeView(login)">Login</button>
@@ -191,51 +202,54 @@
 
 	<div id="settings" class="container mx-auto" style="display:none">
 		<h3 class="text-center">Settings</h3>
-		<form>
+		<form id="settingForm" name="settingForm">
 			<div class="form-group">
 				<h5><strong>Up Botton:</strong> (press the key you want to change the default value) </h5>
-				<input id="upBotton" type="text" size="50" class="form-control"
-					placeholder="default value up arrow" value="" />
+				<input id="upBotton" name="upBotton" type="text" size="50" class="form-control" placeholder="default value up arrow" value="" />
 			</div>
 			<div class="form-group">
 				<h5><strong>Down Botton:</strong> (press the key you want to change the default value) </h5>
-				<input id="downBotton" type="text" class="form-control" placeholder="default value down arrow" value="" />
+				<input id="downBotton" name="downBotton" type="text" class="form-control" placeholder="default value down arrow" value="" />
 			</div>
 			<div class="form-group">
 				<h5><strong>Left Botton:</strong> (press the key you want to change the default value) </h5>
-				<input id="leftBotton" type="text" class="form-control" placeholder="default value left arrow" value="" />
+				<input id="leftBotton" name="leftBotton" type="text" class="form-control" placeholder="default value left arrow" value="" />
 			</div>
 			<div class="form-group">
 				<h5><strong>Right Botton:</strong> (press the key you want to change the default value) </h5>
-				<input id="rightBotton" type="text" class="form-control" placeholder="default value right arrow" value="" />
+				<input id="rightBotton" name="rightBotton" type="text" class="form-control" placeholder="default value right arrow" value="" />
 			</div>
 			<div class="form-group">
 				<h5><strong>Choose Number Of Balls:</strong> (between 50 to 90) </h5>
-				<input id="numberOfBalls" type="number" class="form-control" placeholder="number of balls *" value="" />
+				<input id="numberOfBalls" name="numberOfBalls" type="number" class="form-control" placeholder="number of balls *" value="" />
 			</div>
 			<div class="form-group">
 				<h5><strong>Choose color Of first ball- 5 points ball:</strong> (red/green/blue...) </h5>
-				<input id="firstBallColor" type="text
-				
-				" class="form-control" placeholder="number of balls *" value="" />
+				<input id="firstBallColor" type="color" class="form-control" placeholder="number of balls *" value="#2980B9" />
 			</div>
 
 			<div class="form-group">
 				<h5><strong>Choose color Of second ball- 15 points ball:</strong> (red/green/blue...) </h5>
-				<input id="secondBallColor" type="text" class="form-control" placeholder="number of balls *" value="" />
+				<input id="secondBallColor" type="color" class="form-control" placeholder="number of balls *" value="#F1C40F" />
 			</div>
 
 			<div class="form-group">
 				<h5><strong>Choose color Of third ball- 25 points ball:</strong> (red/green/blue...) </h5>
-				<input id="thirdBallColor" type="text" class="form-control" placeholder="number of balls" value="" />
+				<input id="thirdBallColor" type="color" class="form-control" placeholder="number of balls" value="#E74C3C" />
 
 				<div class="form-group">
 					<h5><strong>Choose the time of game in seconds:</strong> (minimum 60 seconds) </h5>
-					<input id="timeOfGame" type="number" class="form-control" placeholder="time of game *" value="" />
+					<input id="timeOfGame" name="timeOfGame" type="number" class="form-control" placeholder="time of game *" value="" />
 				</div>
 				<div class="form-group">
+					
 					<h5><strong>Choose the number of monsters:</strong> (between 1-4) </h5>
-					<input id="numberOfMonsters" type="number" class="form-control" placeholder="number of monsters" value="" />
+					<select id="numberOfMonsters" type="number">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+					</select>
 				</div>
 				<button type="button" class="btn btn-primary btn-lg" onclick="randomSettings()">random</button>
 				<input id="submitSettings" type="button" class="btn btn-success btn-lg" value="submit" />
