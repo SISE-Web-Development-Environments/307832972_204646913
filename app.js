@@ -30,7 +30,7 @@ $(document).ready(function () {
 	context = canvas.getContext("2d");
 	init();
 
-/*
+
 	jQuery.validator.addMethod("lettersonly", function (value, element) {
 		return this.optional(element) || /^[a-z]+$/i.test(value);
 	}, "Letters only please");
@@ -38,7 +38,7 @@ $(document).ready(function () {
 	jQuery.validator.addMethod("lettersAndNumbers", function (value, element) {
 		return this.optional(element) || /[a-z].[0-9]|[0-9].[a-z]/i.test(value);
 	}, "password must contain both numbers and letters please");
-*/
+
 	$('#registerForm').validate({
 		rules: {
 			fullName: {
