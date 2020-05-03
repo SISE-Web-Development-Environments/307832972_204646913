@@ -25,7 +25,7 @@ var takeMedicine = false;
 var takeClock = false;
 var timeOfGame;
 var audio = new Audio('audio/background.mpeg');
-
+var realNumOfBalls=0;
 $(document).ready(function () {
 	context = canvas.getContext("2d");
 	init();
@@ -98,7 +98,7 @@ $(document).ready(function () {
 
 });
 
-function Start(numOfBalls, timeOfGame, numOfMonsters, firstColor, secondColor, thirdColor) {
+function Start(numOfBalls, timeOfGame, numOfMonsters, firstColor, secondColor, thirdColor, up,down, left, right) {
 	board = new Array();
 	score = 0;
 	pac_color = "yellow";
@@ -204,7 +204,14 @@ function Start(numOfBalls, timeOfGame, numOfMonsters, firstColor, secondColor, t
 		false
 	);
 
-	interval = setInterval(function () { UpdatePosition(timeOfGame, firstColor, secondColor, thirdColor, finalScore, numOfMonsters); }, 150);
+	for(let i=0; i<10; i++){
+		for(let j=0; j<10; j++){
+			if(board[i][j]==5 ||board[i][j]==6||board[i][j]==7){
+				realNumOfBalls++;
+			}
+		}
+	}
+	interval = setInterval(function () { UpdatePosition(timeOfGame, firstColor, secondColor, thirdColor, numOfMonsters, up, down, left, right); }, 150);
 
 }
 
@@ -261,17 +268,17 @@ function findRandomEmptyCell(board) {
 	return [i, j];
 }
 
-function GetKeyPressed() {
-	if (keysDown[38]) {
+function GetKeyPressed(up, down, left, right) {
+	if (keysDown[up]) {
 		return 1;
 	}
-	if (keysDown[40]) {
+	if (keysDown[down]) {
 		return 2;
 	}
-	if (keysDown[37]) {
+	if (keysDown[left]) {
 		return 3;
 	}
-	if (keysDown[39]) {
+	if (keysDown[right]) {
 		return 4;
 	}
 }
@@ -389,9 +396,9 @@ function Draw(firstColor, secondColor, thirdColor, x) {
 	}
 }
 
-function UpdatePosition(timeOfGame, firstColor, secondColor, thirdColor, finalScore, numOfMonsters) {
+function UpdatePosition(timeOfGame, firstColor, secondColor, thirdColor, numOfMonsters, up, down, left, right) {
 	board[shape.i][shape.j] = 0;
-	var x = GetKeyPressed();
+	var x = GetKeyPressed(up, down, left, right);
 	if (x == 1) {
 		if (shape.j > 0 && board[shape.i][shape.j - 1] != 4) {
 			shape.j--;
@@ -486,12 +493,15 @@ function UpdatePosition(timeOfGame, firstColor, secondColor, thirdColor, finalSc
 	}
 	if (board[shape.i][shape.j] == 5) {
 		score += 5;
+		realNumOfBalls--;
 	}
 	if (board[shape.i][shape.j] == 6) {
 		score += 15;
+		realNumOfBalls--;
 	}
 	if (board[shape.i][shape.j] == 7) {
 		score += 25;
+		realNumOfBalls--;
 	}
 
 
@@ -526,7 +536,7 @@ function UpdatePosition(timeOfGame, firstColor, secondColor, thirdColor, finalSc
 		}
 	}
 
-	if (score >= finalScore + 50) {
+	if (realNumOfBalls<=0) {
 		window.clearInterval(interval);
 		window.alert("Winner!!!");
 	} else {
@@ -829,19 +839,66 @@ function initGame() {
 	//await new Promise(r => setTimeout(r,2000));
 	life = 5;
 	changeView(Game);
-	var up = $("#upBotton").val();
+	let up = $("#upBotton").val();
 	if (up == "") {
 		up = "38";
 	} else {
-		up = up.keyCode();
+		up = up.toUpperCase().charCodeAt(0);
+	}
+	let down = $("#downBotton").val();
+	if (down == "") {
+		down = "40";
+	} else {
+		down = down.toUpperCase().charCodeAt(0);
+	}
+	let left = $("#leftBotton").val();
+	if (left == "") {
+		left = "37";
+	} else {
+		left = left.toUpperCase().charCodeAt(0);
+	}
+	let right = $("#rightBotton").val();
+	if (right == "") {
+		right = "39";
+	} else {
+		right = right.toUpperCase().charCodeAt(0);
 	}
 
-	var down = $("#downBotton").val();
-	if (down == "") {
-		down = "38";
-	} else {
-		down = $("#demo2").innerHTML;
+	var upChar = $("#upBotton").val();
+	if(upChar==""){
+		upChar="UP arrow"
 	}
+	else{
+		lblUp.value = upChar;
+	}
+	document.getElementById('lblUp').innerHTML = "Up Key: " + upChar;
+	
+	var downChar = $("#downBotton").val();
+	if(downChar==""){
+		downChar="DOWN arrow"
+	}
+	else{
+		lblDown.value = downChar;
+	}
+	document.getElementById('lblDown').innerHTML = "Down Key: " + downChar;
+
+	var leftChar = $("#leftBotton").val();
+	if(leftChar==""){
+		leftChar="LEFT arrow"
+	}
+	else{
+		lblLeft.value = leftChar;
+	}
+	document.getElementById('lblLeft').innerHTML = "Left Key: " + leftChar;
+
+	var rightChar = $("#rightBotton").val();
+	if(rightChar==""){
+		rightChar="RIGHT arrow"
+	}
+	else{
+		lblRight.value = rightChar;
+	}
+	document.getElementById('lblRight').innerHTML = "Right Key: " + rightChar;
 
 	var numOfBalls = $("#numberOfBalls").val();
 	lblNumOfBalls.value = numOfBalls;
@@ -863,14 +920,7 @@ function initGame() {
 	document.getElementById('lblThirdBallColor').innerHTML = "High Score Ball Color: " + thirdColor;
 	lblUserName.value = userName;
 	document.getElementById('lblUserName').innerHTML = "User Name: " + userName.value;
-	Start(numOfBalls, timeOfGame, numOfMonsters, firstColor, secondColor, thirdColor);
-
-	//$('#upBotton').defaultValue = "38";
-	//$('#downBotton').defaultValue = "40";
-	//$('#leftBotton').defaultValue = "37";
-	//$('#rightBotton').defaultValue = "39";
-
-
+	Start(numOfBalls, timeOfGame, numOfMonsters, firstColor, secondColor, thirdColor,up,down,left,right);
 
 }
 
